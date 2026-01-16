@@ -1,7 +1,18 @@
 class Solution:
-    def solve(self):
+    def longestConsecutive(self, nums: list[int]) -> int:
         """
-        Problem: 08-Longest-Consecutive
-        Method: Set sequence
+        :type nums: List[int]
+        :rtype: int
         """
-        pass
+        numSet = set(nums)
+        longest = 0
+        
+        for n in nums:
+            # Check if 'n' is the start of a sequence
+            if (n - 1) not in numSet:
+                length = 0
+                while (n + length) in numSet:
+                    length += 1
+                longest = max(length, longest)
+                
+        return longest
